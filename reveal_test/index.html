@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n>>>\n$">
+					<script type="text/template">
+
+dummy
+
+```py
+import numpy as np
+np.random.randn(100)
+```
+
+---
+
+## Git使い方まとめ
+2017
+
+---
+
+### 目的・範囲
+---
+* 実際にgitコマンドに触れて動作を理解する
+
+---
+
+### 扱わない内容（余裕があったらやるかも）
+---
+* Gitとは何か
+  - Gitの生い立ち
+  - SVNとの違い
+  - <https://ja.wikipedia.org/wiki/Git>
+
+* Git環境構築
+  - インストール手順
+  - git config 関連
+
+* Gitのお作法
+  - コメントの書き方
+  - ブランチ運用ルール
+
+---
+
+### Gitでおさえる必要がある概念
+---
+* ローカル
+  * ワークツリー
+  * ステージ
+  * リポジトリ
+
+* リモート
+  * リポジトリ
+
+>>>
+
+![test](./img/git_001.png)
+
+---
+
+### それぞれの意味
+---
+* ワークツリー
+  - 作業場
+* ステージ
+  - コミットを準備する場
+* リポジトリ
+  - スナップショットを記録（コミット）する場
+
+>>>
+
+### ワークツリー
+---
+* 作業場
+  - ファイルを編集する場
+
+>>>
+
+### ステージ
+---
+* コミットを準備する場
+  - `git add` コマンドにより、ワークツリーの内容からblobオブジェクト、インデックスを作成する（後述）
+
+>>>
+
+### リポジトリ
+---
+* スナップショットを記録（コミット）する場
+  - Gitでは、差分ではなくスナップショットを記録する。それにより、超高速なブランチ切り替えを実現。大規模な開発で威力を発揮
+  - blobオブジェクト（圧縮ファイル）、treeオブジェクト、commitオブジェクトを管理（後述）
+    * 上記3つのオブジェクトはGitオブジェクトと呼ばれる
+
+---
+
+## Gitコマンド説明
+---
+リポジトリ作成からコミットまで
+
+---
+
+### `git init`
+---
+* ローカルに.gitフォルダを作成し、ローカルリポジトリを作成する
+* `git init –-bare` : bareリポジトリを作成する
+  - bareリポジトリ : ワークツリーをもたないリポジトリ
+    * リモートリポジトリ専用
+  - non-bareリポジトリ : ワークツリーをもつリポジトリ
+    * ローカルリポジトリ（としたほうがよい）
+
+>>>
+
+### `git init` イメージ
+---
+
+![test](./img/git_002.png)
+
+
+					</script>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				width: 1280,
+				height: 960,
+				progress: true,
+				// margin: 0.1,
+				// minScale: 0.2,
+				// maxScale: 1.5
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
