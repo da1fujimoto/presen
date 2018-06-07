@@ -27,116 +27,38 @@
 				<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n>>>\n$">
 					<script type="text/template">
 
-dummy
 
-```py
-import numpy as np
-np.random.randn(100)
-```
 
-印刷する場合は[/?print-pdf](?print-pdf) をつけて行う
+## ○○について
+2018/xx/xx
 
 ---
 
-## Git使い方まとめ
-2017
+## 本日の資料
+
+![url](./img/reveal_test.png)
+
+https://da1fujimoto.github.io/presen/reveal_test/
+
+pdf化する場合は[/?print-pdf](?print-pdf) をつけてブラウザの印刷ダイアログから
+
+---
+
+## 自己紹介
+
+```py
+mySelf = {
+    name: 'Daichi Fujimoto',
+}
+```
 
 ---
 
 ### 目的・範囲
 ---
-* 実際にgitコマンドに触れて動作を理解する
+* testtesttest
 
 ---
-
-### 扱わない内容（余裕があったらやるかも）
----
-* Gitとは何か
-  - Gitの生い立ち
-  - SVNとの違い
-  - <https://ja.wikipedia.org/wiki/Git>
-
-* Git環境構築
-  - インストール手順
-  - git config 関連
-
-* Gitのお作法
-  - コメントの書き方
-  - ブランチ運用ルール
-
----
-
-### Gitでおさえる必要がある概念
----
-* ローカル
-  * ワークツリー
-  * ステージ
-  * リポジトリ
-
-* リモート
-  * リポジトリ
-
->>>
-
-![test](./img/git_001.png)
-
----
-
-### それぞれの意味
----
-* ワークツリー
-  - 作業場
-* ステージ
-  - コミットを準備する場
-* リポジトリ
-  - スナップショットを記録（コミット）する場
-
->>>
-
-### ワークツリー
----
-* 作業場
-  - ファイルを編集する場
-
->>>
-
-### ステージ
----
-* コミットを準備する場
-  - `git add` コマンドにより、ワークツリーの内容からblobオブジェクト、インデックスを作成する（後述）
-
->>>
-
-### リポジトリ
----
-* スナップショットを記録（コミット）する場
-  - Gitでは、差分ではなくスナップショットを記録する。それにより、超高速なブランチ切り替えを実現。大規模な開発で威力を発揮
-  - blobオブジェクト（圧縮ファイル）、treeオブジェクト、commitオブジェクトを管理（後述）
-    * 上記3つのオブジェクトはGitオブジェクトと呼ばれる
-
----
-
-## Gitコマンド説明
----
-リポジトリ作成からコミットまで
-
----
-
-### `git init`
----
-* ローカルに.gitフォルダを作成し、ローカルリポジトリを作成する
-* `git init –-bare` : bareリポジトリを作成する
-  - bareリポジトリ : ワークツリーをもたないリポジトリ
-    * リモートリポジトリ専用
-  - non-bareリポジトリ : ワークツリーをもつリポジトリ
-    * ローカルリポジトリ（としたほうがよい）
-
->>>
-
-### `git init` イメージ
----
-
-![test](./img/git_002.png)
 
 
 					</script>
@@ -152,9 +74,12 @@ np.random.randn(100)
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				history: true,
 				width: 1280,
 				height: 960,
 				progress: true,
+//				transition: 'cube',
+//				transitionSpeed: 'slow',
 				// margin: 0.1,
 				// minScale: 0.2,
 				// maxScale: 1.5
