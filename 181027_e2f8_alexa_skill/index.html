@@ -22,6 +22,10 @@
 			font-size: 16pt;
 			color: #ffffff;
 		}
+
+		.enable-box {
+			box-shadow: 0 0 8px gray;
+		}
 	</style>
 
 	<!-- Printing and PDF exports -->
@@ -43,11 +47,11 @@
 					表紙
 				-->
 				<section>
-					<!-- <h1>
+					<h1>
 						<i class="fas fa-cat"></i>
 						Alexaのスキルを作ってみた
 						<i class="fas fa-cat"></i>
-					</h1> -->
+					</h1>
 					<p>2018/10/27 E2F</p>
 				</section>
 				<!-- 
@@ -61,6 +65,7 @@
 						<hr>
 					</h2>
 					<div>
+						<div><img src="image/QR_Code1540517057.png" alt="" width="25%"></div>
 						<p><a href="./">https://da1fujimoto.github.io/presen/181027_e2f8_alexa_skill/</a></p>
 						<p>pdf化する場合は<a href="./?print-pdf">?print-pdf</a>をつけてブラウザの印刷ダイアログから</p>
 					</div>
@@ -83,10 +88,13 @@
 							Alexaとは
 						</li>
 						<li>
-							ASK
-						</li>
-						<li>
-							スキル作成の流れ
+							スキル作成
+							<ul>
+								<li>ASK</li>
+								<li>エンドポイント(AWS Lambda)</li>
+								<li>テスト・デバッグ</li>
+								<li>リリース・審査</li>
+							</ul>
 						</li>
 					</ul>
 				</section>
@@ -158,7 +166,7 @@
 						<i class="fas fa-broom"></i>
 						<hr>
 					</h2>
-					<p><img src="image/ask.jpeg" alt="" width="85%"></p>
+					<div><img src="image/ask.jpeg" alt="" width="65%" class="enable-box"></div>
 					<p style="font-size: 32px;text-align: right">
 						<a href="https://www.slideshare.net/AmazonWebServices/aws-reinvent-2016-workshop-build-an-alexaenabled-product-with-raspberry-pi-alx204">
 							※ AWS re:Invent 2016
@@ -175,8 +183,9 @@
 						<i class="fas fa-broom"></i>
 						<hr>
 					</h2>
-					<p>対話モデルを定義してエンドポイント（今回はAWS Lambda）との橋渡しをする。</p>
-					<p><img src="image/intent.png" alt="" width="70%"></p>
+					<p>対話モデルを定義してエンドポイント（e.g. AWS Lambda）とを橋渡し</p>
+					<p>発話内容をどういう風に解釈するかを設計。但し、応答は設計しない</p>
+					<div><img src="image/intent.png" alt="" width="65%" class="enable-box"></div>
 				</section>
 				<!--
 					インテントとスロット
@@ -184,29 +193,104 @@
 				<section>
 					<h2>
 						<i class="fas fa-hat-wizard"></i>
-						インテントとスロット
+						インテントとスロット（ASK）
 						<i class="fas fa-hat-wizard"></i>
 						<hr>
 					</h2>
 					<p>それぞれ以下のようなもの</p>
 					<ul>
 						<li>
-							インテント：コマンド
+							インテント：コマンド・イベント
 						</li>
 						<li>
 							スロット：変数
 						</li>
 					</ul>
-					<p><img src="image/slots.png" alt="" width="50%"></p>
+					<div><img src="image/slots.png" alt="" width="55%" class="enable-box"></div>
+				</section>
+				<!--
+					エンドポイント(ASK)
+				-->
+				<section>
+					<h2>
+						<i class="fas fa-crow"></i>
+						エンドポイント（ASK）
+						<i class="fas fa-crow"></i>
+						<hr>
+					</h2>
+					<p>エンドポイントはAWS Lambdaである必要はないが、簡単に設定できるようになっている</p>
+					<div><img src="image/endpoint.jpeg" alt="" class="enable-box"></div>
+				</section>
+				<!--
+					エンドポイント(Lambda)
+				-->
+				<section>
+					<h2>
+						<i class="fas fa-spider"></i>
+						エンドポイント（AWS Lambda）
+						<i class="fas fa-spider"></i>
+						<hr>
+					</h2>
+					<p>Node.js, Pythonを使用して実装可能。ASKで記述しなかった応答処理（ロジック）をここで実装</p>
+					<p>API Gateway<span style="font-size: 25px">※</span>の設定も不要でカンタン。DynamoDB, S3など他のAWS機能とも連携可能</p>
+					<div><img src="image/ASK_Lambda.svg" alt="" class="enable-box" width="60%"></div>
+					<p style="font-size: 25px">※ API Gateway: AWS Lambdaに外からHTTPでアクセスする際にPOST/GETなどのルールを定義する機能</p>
+				</section>
+				<!--
+					テスト・デバッグ
+				-->
+				<section>
+					<h2>
+						<i class="fas fa-ghost"></i>
+						テスト・デバッグ
+						<i class="fas fa-ghost"></i>
+						<hr>
+					</h2>
+					<p>JSONを使ったデバッグ機能がASK, Lambda両方に用意されているのでそれらを駆使して意図した動作になっているかを確認する</p>
+					<p>ここまで出来れば自分のEchoでスキルを利用可能になっている</p>
+				</section>
+				<section>
+					<p>ASK</p>
+					<div><img src="image/ask_debug.jpeg" alt="" class="enable-box" width="60%"></div>
+					<p>Lambda</p>
+					<div><img src="image/lambda_debug.jpeg" alt="" class="enable-box" width="50%"></div>
+				</section>
+				<!--
+					リリース・審査
+				-->
+				<section>
+					<h2>
+						<i class="fas fa-broom"></i>
+						テスト・デバッグ
+						<i class="fas fa-broom"></i>
+						<hr>
+					</h2>
+					<p>誰でも使えるスキルにするにはAmazonの審査を受ける必要がある</p>
+					<p>スキルの説明やアイコンを作成し、審査に通す</p>
+					<p>審査員とのやり取りの末、スキル公開へ！</p>
+					<div><img src="image/ask_deploy.jpeg" alt="" class="enable-box" width="60%"></div>
+				</section>
+				<section>
+					<p>やったぜ</p>
+					<div><img src="image/fizz_buzz.jpeg" alt="" class="enable-box"></div>
+				</section>
+				<section>
+					<p>何かもらえる</p>
+					<div><img src="image/campaign_1.jpeg" alt="" width="70%" class="enable-box"></div>
+					<div><img src="image/campaign_2.jpeg" alt="" width="70%" class="enable-box"></div>
 				</section>
 				<!--
 					リンク集
 				-->
 				<section>
 					<h2>
-						リンク集
+						<i class="fas fa-hat-wizard"></i>
+						参考・リンク集
+						<i class="fas fa-hat-wizard"></i>
 						<hr>
 					</h2>
+					<p><a href="https://developer.amazon.com/ja/alexa-skills-kit/webinars">Alexa道場</a>はAmazon公式ウェビナー。これ見ただけで作れます</p>
+					<p>私の作ったスキルのコードや審査時の資料は<a href="https://github.com/da1fujimoto/alexa_fizzbuzz">GitHub</a>に置いてます</p>
 					<ul>
 						<li><a href="https://developer.amazon.com/ja/alexa-skills-kit/webinars">Alexa道場</a></li>
 						<li><a href="https://developer.amazon.com/ja/alexa">Alexs Skills Kit</a></li>
@@ -214,15 +298,7 @@
 						<li><a href="https://github.com/da1fujimoto/alexa_fizzbuzz">私のサンプルコード</a></li>
 						<li><a href="https://www.amazon.co.jp/da1fu-FizzBuzz%E3%82%B2%E3%83%BC%E3%83%A0/dp/B07DPNVTXP">FizzBuzzゲームスキル</a></li>
 					</ul>
-				</section>
-				<section>
-					<h2>code</h2>
-					{{ test }}
-
-					<pre><code class="python">
-def(test):
-    print(test)
-				</code></pre>
+					<p style="text-align: right">Fin</p>
 				</section>
 			</div>
 		</div>
